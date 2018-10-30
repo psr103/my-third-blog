@@ -5,9 +5,11 @@
         <p>이름과 비밀번호가 일치하지 않습니다. 다시 시도해주세요.</p>
     {% endif %}
 
+<div style="align:center">
     <form method="post" action="{% url 'login' %}">
     {% csrf_token %}
         <table>
+          <p style="align:center">Ryoolstagram</p>
         <tr>
             <td>{{ form.username.label_tag }}</td>
             <td>{{ form.username }}</td>
@@ -18,7 +20,8 @@
         </tr>
         </table>
 
-        <input type="submit" value="login" />
+        <input type="submit" value="로그인" />
         <input type="hidden" name="next" value="{{ next }}" />
     </form>
+</div>
 {% endblock %}
