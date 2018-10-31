@@ -1,3 +1,5 @@
+/* @import url('https://fonts.googleapis.com/css?family=Lobster'); */
+
 h1 a {
     color: #FCA205;
     font-family: 'Lobster';
@@ -55,4 +57,17 @@ h1, h2, h3, h4 {
 
 .comment {
     margin: 20px 0px 20px 20px;
+}
+
+.banner h1, .page-header h1 a, .banner h1 a:visited, .banner h1 a:active {
+    color: #000000;
+    font-size: 23pt;
+    text-decoration: none;
+}
+
+.loginlogo p {
+    color: #000000;
+    font-size: 32pt;
+    /* font-family: 'Lobster', cursive; */
+    text-decoration: none;
 }

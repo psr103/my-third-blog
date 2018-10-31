@@ -1,7 +1,8 @@
 {% load static %}
+
 <html>
     <head>
-        <title>2조 프로젝트</title>
+        <title>Ryoolstagram</title>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="{% static 'css/blog.css' %}">
@@ -9,37 +10,78 @@
 
     </head>
     <body>
-      <div class="page-header">
-        {% if user.is_authenticated %}
+
+
+      {% if user.is_authenticated %}
+        <dev class="banner">
+          {% load staticfiles %}
+          <h1 style="text-align:center"><a href="/"><img src="{% static "image/logo.jpg" %}"> | Ryoolstagram</a></h1>
+        </dev>
+        <div class="page-header">
           <a href="{% url 'logout' %}" class="top-menu"><span class="glyphicon glyphicon-off"></span></a>
           <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
           <!--<a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>-->
           <p class="top-menu"> {{ user.username }}</p>
-
-          {% else %}
-          <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
-          {% endif %}
-          {% load staticfiles %}
-        
-
-
-
-
-
-          <h1 style="text-align:center"><a href="/"><img src="{% static "image/logo.jpg" %}"> | Ryoolstagram</a></h1>
-          <hr>
-
-      </div>
+        </div>
 
         <div class="content container">
           <div class="row">
-              <div class="col-md-8">
-                {% block content %}
-                {% endblock %}
-              </div>
+            <div class="col-md-8">
+              {% block content %}
+              {% endblock %}
+            </div>
           </div>
         </div>
 
-    </body>
 
+      {% else %}
+      {% load static %}
+
+
+      {% block login %}
+          {% if form.errors %}
+              <p>이름과 비밀번호가 일치하지 않습니다. 다시 시도해주세요.</p>
+          {% endif %}
+
+      <div align="center">
+          <br><br><br><br><img src="{% static "image/phone.jpg" %}"><br><br>
+          <form method="post" action="{% url 'login' %}">
+          {% csrf_token %}
+              <table>
+                <div class="loginlogo">
+                  <p style="align:center; font-family: 'Lobster', cursive;">Ryoolstagram</p><br>
+                </div>
+              <tr>
+                  <td>{{ form.username.label_tag }}</td>
+                  <td>{{ form.username }}</td>
+              </tr>
+              <tr>
+                  <td>{{ form.password.label_tag }}</td>
+                  <td>{{ form.password }}</td>
+              </tr>
+              </table>
+
+              <input type="submit" value="로그인" />
+              <input type="hidden" name="next" value="{{ next }}" />
+          </form>
+      </div>
+      {% endblock %}
+
+      {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </body>
+<style
 </html>

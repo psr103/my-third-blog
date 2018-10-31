@@ -1,15 +1,20 @@
 {% extends "blog/base.html" %}
+{% load static %}
 
-{% block content %}
+
+{% block login %}
     {% if form.errors %}
         <p>이름과 비밀번호가 일치하지 않습니다. 다시 시도해주세요.</p>
     {% endif %}
 
-<div style="align:center">
+<div align="center">
+    <img src="{% static "image/phone.jpg" %}">
     <form method="post" action="{% url 'login' %}">
     {% csrf_token %}
         <table>
-          <p style="align:center">Ryoolstagram</p>
+          <div class="loginlogo">
+            <p style="align:center; font-family: 'Lobster', cursive;">Ryoolstagram</p><br>
+          </div>
         <tr>
             <td>{{ form.username.label_tag }}</td>
             <td>{{ form.username }}</td>
